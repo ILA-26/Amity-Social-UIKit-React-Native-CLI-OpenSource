@@ -11,7 +11,7 @@ export const useStyles = (theme: MyMD3Theme) => {
       backgroundColor: theme.colors.background,
     },
     header: {
-      top: top,
+      top: 0,
       width: '100%',
       position: 'absolute',
       flexDirection: 'row',
@@ -34,7 +34,7 @@ export const useStyles = (theme: MyMD3Theme) => {
       fontWeight: '600',
     },
     scrollContainer: {
-      paddingTop: top / 2,
+      paddingTop: top * 2,
       paddingBottom: bottom,
       flex: 1,
     },
