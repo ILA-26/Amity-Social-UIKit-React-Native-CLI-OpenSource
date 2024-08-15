@@ -37,7 +37,7 @@ import CreatePoll from '../screens/CreatePoll/CreatePoll';
 import ReactionListScreen from '../screens/ReactionListScreen/ReactionListScreen';
 import CreateStoryScreen from '../v4/screen/CreateStory/CreateStoryScreen';
 import Home from '../screens/Home';
-import AmitySocialUIKitV4Navigator from '../v4/routes/AmitySocialUIKitV4Navigator';
+import AmitySocialUIKitV4Navigator from '../v4/ila-26/routes/AmitySocialUIKitV4Navigator';
 import UserPendingRequest from '../v4/screen/UserPendingRequest/UserPendingRequest';
 import FollowerList from '../v4/screen/FollowerList/FollowerList';
 import CreateLivestream from '../screens/CreateLivestream/CreateLivestream';
