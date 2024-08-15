@@ -6,6 +6,7 @@ import AmityGlobalFeedComponent from '../AmityGlobalFeedComponent/AmityGlobalFee
 
 type AmityNewsFeedComponentType = {
   pageId?: PageID;
+  onPressExploreCommunity?: any;
 };
 
 const AmityNewsFeedComponent: FC<AmityNewsFeedComponentType> = ({

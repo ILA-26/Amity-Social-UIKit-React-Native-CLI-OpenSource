@@ -30,7 +30,7 @@ import {
 import { useStyles } from './styles';
 import BackButtonIconElement from '../../../../PublicApi/Elements/BackButtonIconElement/BackButtonIconElement';
 import MenuButtonIconElement from '../../../../PublicApi/Elements/MenuButtonIconElement/MenuButtonIconElement';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../../routes/RouteParamList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {

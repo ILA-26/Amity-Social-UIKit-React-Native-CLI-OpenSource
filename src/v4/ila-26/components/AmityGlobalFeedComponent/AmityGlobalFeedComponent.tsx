@@ -17,7 +17,7 @@ import { ComponentID, PageID } from '../../../enum/enumUIKitID';
 import { useAmityComponent } from '../../../hook/useUiKitReference';
 import { AmityPostContentComponentStyleEnum } from '../../../enum/AmityPostContentComponentStyle';
 import AmityStoryTabComponent from '../../../PublicApi/Components/AmityStoryTabComponent/AmityStoryTabComponent';
-import { AmityStoryTabComponentEnum } from '../../types';
+import { AmityStoryTabComponentEnum } from '../../../../v4/PublicApi/types';
 
 type AmityGlobalFeedComponentType = {
   pageId?: PageID;

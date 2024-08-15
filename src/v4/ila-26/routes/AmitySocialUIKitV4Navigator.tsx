@@ -6,7 +6,6 @@ import {
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import type { RootStackParamList } from './RouteParamList';
-import useAuth from '../../hooks/useAuth';
 import Explore from '../../../screens/Explore';
 import CategoryList from '../../../screens/CategorytList';
 import CommunityList from '../../../screens/CommunityList';
@@ -91,7 +90,7 @@ export default function AmitySocialUIKitV4Navigator() {
         }}
       >
         <Stack.Screen
-          name="HomeAmity"
+          name="Home"
           component={AmitySocialHomePage}
           options={{ headerShown: false }}
         />
@@ -211,7 +210,6 @@ export default function AmitySocialUIKitV4Navigator() {
           name="CommunitySetting"
           component={CommunitySetting}
           options={({
-            navigation,
             route: {
               params: { communityName },
             },

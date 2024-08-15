@@ -4,11 +4,7 @@ import React, { FC, memo, useCallback } from 'react';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../routes/RouteParamList';
-import {
-  useConfigImageUri,
-  useAmityComponent,
-  useUiKitConfig,
-} from '../../../../hook';
+import { useAmityComponent, useUiKitConfig } from '../../../../hook';
 import { ComponentID, ElementID, PageID } from '../../../../enum/enumUIKitID';
 import { useBehaviour } from '../../../../providers/BehaviourProvider';
 import AmityCreatePostMenuComponent from '../../../../PublicApi/Components/AmityCreatePostMenuComponent/AmityCreatePostMenuComponent';
@@ -28,7 +24,7 @@ const AmitySocialHomeTopNavigationComponent: FC<
   const componentConfig = useAmityComponent({ pageId, componentId });
   const theme = componentConfig.themeStyles;
   const { AmitySocialHomeTopNavigationComponentBehaviour } = useBehaviour();
-  const { isOpen, setIsOpen, toggle } = usePopup();
+  const { isOpen, setIsOpen } = usePopup();
 
   const [myCommunitiesTab] = useUiKitConfig({
     page: PageID.social_home_page,
@@ -36,12 +32,12 @@ const AmitySocialHomeTopNavigationComponent: FC<
     element: ElementID.my_communities_button,
     keys: ['text'],
   }) as string[];
-  const [exploreTab] = useUiKitConfig({
-    page: PageID.social_home_page,
-    component: ComponentID.WildCardComponent,
-    element: ElementID.explore_button,
-    keys: ['text'],
-  }) as string[];
+  // const [exploreTab] = useUiKitConfig({
+  //   page: PageID.social_home_page,
+  //   component: ComponentID.WildCardComponent,
+  //   element: ElementID.explore_button,
+  //   keys: ['text'],
+  // }) as string[];
 
   // const searchIcon = useConfigImageUri({
   //   configPath: {
@@ -51,14 +47,14 @@ const AmitySocialHomeTopNavigationComponent: FC<
   //   },
   //   configKey: 'icon',
   // });
-  const createIcon = useConfigImageUri({
-    configPath: {
-      page: PageID.social_home_page,
-      component: ComponentID.top_navigation,
-      element: ElementID.post_creation_button,
-    },
-    configKey: 'icon',
-  });
+  // const createIcon = useConfigImageUri({
+  //   configPath: {
+  //     page: PageID.social_home_page,
+  //     component: ComponentID.top_navigation,
+  //     element: ElementID.post_creation_button,
+  //   },
+  //   configKey: 'icon',
+  // });
 
   const navigation =
     useNavigation() as NativeStackNavigationProp<RootStackParamList>;

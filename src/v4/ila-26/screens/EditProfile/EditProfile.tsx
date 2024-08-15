@@ -82,7 +82,7 @@ export const EditProfile: React.FC<EditProfileProps> = ({
     navigation.setOptions({
       header: () => (
         <HeaderContainer>
-          <CloseButton />
+          <CloseButton onPress={navigation?.goBack()} />
           <Text
             style={{
               fontWeight: '700',

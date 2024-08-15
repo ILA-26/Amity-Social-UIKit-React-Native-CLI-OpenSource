@@ -73,7 +73,7 @@ const AmitySocialHomePage = () => {
       return (
         <AmityEmptyNewsFeedComponent
           pageId={PageID.social_home_page}
-          onPressExploreCommunity={onPressExploreCommunity}
+          onPressExploreCommunity={onPressExploreCommunity as any}
         />
       );
     if (activeTab === newsFeedTab) {

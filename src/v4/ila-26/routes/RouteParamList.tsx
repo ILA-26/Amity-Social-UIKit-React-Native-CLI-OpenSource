@@ -1,5 +1,5 @@
-import { AmityPostComposerPageType } from '../PublicApi/types';
-import { AmityPostTargetSelectionPageType } from '../enum';
+import { AmityPostComposerPageType } from '../../PublicApi/types';
+import { AmityPostTargetSelectionPageType } from '../../enum';
 
 export type RootStackParamList = {
   Home: { postIdCallBack?: string };
