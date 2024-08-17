@@ -70,7 +70,7 @@ jobs:
         if: github.event.inputs.release_as == 'custom'
 
       - name: Build package
-        run: yarn build
+        run: yarn prepack
 
       - uses: actions/setup-node@v4
         with:
