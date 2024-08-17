@@ -97,7 +97,8 @@
     "react-native-vlc-media-player": "^1.0.67",
     "release-it": "^15.0.0",
     "turbo": "^1.10.7",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "lefthook": "^1.7.13"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
@@ -235,5 +236,6 @@
   "volta": {
     "node": "20.13.1",
     "yarn": "1.22.15"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
