@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ "$CI" = "true" ]; then
+  exit 0
+fi
+
+
 if [ "$LEFTHOOK_VERBOSE" = "1" -o "$LEFTHOOK_VERBOSE" = "true" ]; then
   set -x
 fi
