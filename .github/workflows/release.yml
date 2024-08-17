@@ -9,10 +9,6 @@ on:
         description: 'custom version'
         required: false
 
-env:
-  SKIP_YARN_COREPACK_CHECK: true
-  COREPACK_ROOT: true
-
 jobs:
   build-library:
     runs-on: ubuntu-latest
@@ -79,7 +75,7 @@ jobs:
           scope: '@ila-26'
 
       - name: Publish package
-        run: yarn publish --tag ${{ env.TAG }} --registry=https://npm.pkg.github.com/
+        run: npm publish --tag ${{ env.TAG }} --registry=https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN }}
           TAG: ${{ github.ref == 'refs/heads/main' && 'release' || github.ref == 'refs/heads/native' && 'dev' || startsWith(github.ref, 'refs/heads/release/') && 'pre-release' || 'custom' }}
