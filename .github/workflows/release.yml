@@ -41,29 +41,17 @@ jobs:
           git config user.name "bmo-amity-bot"
           git config user.email "developers@amity.co"
 
-      - uses: pnpm/action-setup@v4
+      - name: Install Yarn
+        uses: actions/setup-node@v4
         with:
-          version: 8
-          run_install: false
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v4
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          node-version: '20.x'
+          cache: 'yarn'
 
       - name: Install dependencies
-        run: pnpm install
+        run: yarn install --frozen-lockfile
 
       - name: Clean dist directory
-        run: pnpm run clean
+        run: yarn run clean
 
       - name: Increase version (patch)
         run: npx standard-version --yes --release-as patch
@@ -82,7 +70,7 @@ jobs:
         if: github.event.inputs.release_as == 'custom'
 
       - name: Build package
-        run: pnpm run build
+        run: yarn build
 
       - uses: actions/setup-node@v4
         with:
@@ -91,7 +79,7 @@ jobs:
           scope: '@ila-26'
 
       - name: Publish package
-        run: npm publish --tag ${{ env.TAG }} --registry=https://npm.pkg.github.com/
+        run: yarn publish --tag ${{ env.TAG }} --registry=https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN }}
           TAG: ${{ github.ref == 'refs/heads/main' && 'release' || github.ref == 'refs/heads/native' && 'dev' || startsWith(github.ref, 'refs/heads/release/') && 'pre-release' || 'custom' }}
