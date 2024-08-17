@@ -1,4 +1,4 @@
-name: CI
+name: Build & Publish
 on:
   workflow_dispatch:
     inputs:
@@ -66,19 +66,19 @@ jobs:
         run: pnpm run clean
 
       - name: Increase version (patch)
-        run: pnpm standard-version --yes --release-as patch
+        run: npx standard-version --yes --release-as patch
         if: github.event.inputs.release_as == 'patch'
 
       - name: Increase version (minor)
-        run: pnpm standard-version --yes --release-as minor
+        run: npx standard-version --yes --release-as minor
         if: github.event.inputs.release_as == 'minor'
 
       - name: Increase version (major)
-        run: pnpm standard-version --yes --release-as major
+        run: npx standard-version --yes --release-as major
         if: github.event.inputs.release_as == 'major'
 
       - name: Increase version (custom)
-        run: pnpm standard-version --yes --release-as ${{ github.event.inputs.custom_version }}
+        run: npx standard-version --yes --release-as ${{ github.event.inputs.custom_version }}
         if: github.event.inputs.release_as == 'custom'
 
       - name: Build package
