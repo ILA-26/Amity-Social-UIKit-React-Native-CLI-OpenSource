@@ -25,6 +25,7 @@ export interface IAmityUIkitProvider {
   configs?: IConfigRaw;
   behaviour?: IBehaviour;
   fcmToken?: string;
+  avatarImgUrl?: string;
 }
 
 export interface CustomColors {
@@ -60,6 +61,7 @@ export default function AmityUiKitProvider({
   configs,
   behaviour,
   fcmToken,
+  avatarImgUrl
 }: IAmityUIkitProvider) {
   const colorScheme = useColorScheme();
   const SHADE_PERCENTAGES = [0.25, 0.4, 0.45, 0.6];
@@ -116,6 +118,7 @@ export default function AmityUiKitProvider({
         apiEndpoint={apiEndpoint}
         authToken={authToken}
         fcmToken={fcmToken}
+        avatarImgUrl={avatarImgUrl}
       >
         <ConfigProvider configs={configData}>
           <BehaviourProvider behaviour={behaviour}>

@@ -11,6 +11,7 @@ import AmityCreatePostMenuComponent from '../../../../PublicApi/Components/Amity
 import TextKeyElement from '../../../../PublicApi/Elements/TextKeyElement/TextKeyElement';
 import { usePopup } from '../../../../hook/usePopup';
 import Popup from '../../../../component/PopupMenu/PopupMenu';
+import useAuth from 'amity-ui-kit/src/hooks/useAuth';
 
 type AmitySocialHomeTopNavigationComponentType = {
   activeTab: string;
@@ -161,6 +162,8 @@ const AmitySocialHomeTopNavigationComponent: FC<
 
   if (componentConfig?.isExcluded) return null;
 
+  const {avatarImgUrl} = useAuth();
+
   return (
     <>
       <View
@@ -171,7 +174,8 @@ const AmitySocialHomeTopNavigationComponent: FC<
         <View style={styles.profileContainer}>
           <Image
             // source={require('../../../../configAssets/icons/ila-26-profile.png')}
-            source={require('../../../ConfigAssets/ila-26-profile.png')}
+            // source={require('../../../ConfigAssets/ila-26-profile.png')}
+            src={avatarImgUrl}
             style={styles.profilePic}
           />
           <TextKeyElement

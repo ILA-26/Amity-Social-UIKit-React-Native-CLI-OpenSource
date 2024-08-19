@@ -1,6 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import type { MyMD3Theme } from 'src/providers/amity-ui-kit-provider';
+import { hasNotch } from 'react-native-device-info';
 
 export const useStyles = () => {
   const theme = useTheme() as MyMD3Theme;
@@ -12,8 +13,8 @@ export const useStyles = () => {
       backgroundColor: theme.colors.background,
       paddingHorizontal: 12,
       borderBottomWidth: 2,
-      borderBottomColor: theme.colors.baseShade4,
-      marginTop:32
+      borderColor: theme.colors.baseShade4,
+      marginTop : Platform.select({android : 16, ios : hasNotch() ?  0 : 32})
     },
     tabBtn: {
       paddingHorizontal: 12,

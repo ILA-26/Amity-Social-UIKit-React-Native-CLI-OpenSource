@@ -1,4 +1,4 @@
-import { StyleSheet, useWindowDimensions } from 'react-native';
+import { Platform, StyleSheet, useWindowDimensions } from 'react-native';
 import type { MyMD3Theme } from 'src/providers/amity-ui-kit-provider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -34,7 +34,8 @@ export const useStyles = (theme: MyMD3Theme) => {
       fontWeight: '600',
     },
     scrollContainer: {
-      paddingTop: top * 2,
+      // paddingTop: top ,
+      paddingTop : Platform.select({android : 36 , ios : 32}),
       paddingBottom: bottom,
       flex: 1,
     },

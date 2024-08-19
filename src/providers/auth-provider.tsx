@@ -17,6 +17,7 @@ export const AuthContext = React.createContext<AuthContextInterface>({
   apiRegion: 'sg',
   authToken: '',
   fcmToken: undefined,
+  avatarImgUrl:''
 });
 
 export const AuthContextProvider: FC<IAmityUIkitProvider> = ({
@@ -28,6 +29,7 @@ export const AuthContextProvider: FC<IAmityUIkitProvider> = ({
   children,
   authToken,
   fcmToken,
+  avatarImgUrl
 }: IAmityUIkitProvider) => {
   const [error, setError] = useState('');
   const [isConnecting, setLoading] = useState(false);
@@ -148,6 +150,7 @@ export const AuthContextProvider: FC<IAmityUIkitProvider> = ({
         isConnected,
         sessionState,
         apiRegion: apiRegion.toLowerCase(),
+        avatarImgUrl
       }}
     >
       {children}
