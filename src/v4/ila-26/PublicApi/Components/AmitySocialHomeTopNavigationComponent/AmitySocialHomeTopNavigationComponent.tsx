@@ -171,12 +171,7 @@ const AmitySocialHomeTopNavigationComponent: FC<
         accessibilityLabel={componentConfig.accessibilityId}
       >
         <View style={styles.profileContainer}>
-          <Image
-            // source={require('../../../../configAssets/icons/ila-26-profile.png')}
-            // source={require('../../../ConfigAssets/ila-26-profile.png')}
-            src={avatarImgUrl}
-            style={styles.profilePic}
-          />
+          <Image source={{ uri: avatarImgUrl }} style={styles.profilePic} />
           <TextKeyElement
             pageID={pageId}
             componentID={componentId}

@@ -3,7 +3,7 @@ import type { MyMD3Theme } from 'src/providers/amity-ui-kit-provider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const useStyles = (theme: MyMD3Theme) => {
-  const { top, bottom } = useSafeAreaInsets();
+  const { bottom } = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const styles = StyleSheet.create({
     container: {
@@ -35,7 +35,7 @@ export const useStyles = (theme: MyMD3Theme) => {
     },
     scrollContainer: {
       // paddingTop: top ,
-      paddingTop : Platform.select({android : 36 , ios : 32}),
+      paddingTop: Platform.select({ android: 36, ios: 32 }),
       paddingBottom: bottom,
       flex: 1,
     },
