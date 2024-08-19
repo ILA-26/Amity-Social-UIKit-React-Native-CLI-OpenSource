@@ -11,7 +11,7 @@ import AmityCreatePostMenuComponent from '../../../../PublicApi/Components/Amity
 import TextKeyElement from '../../../../PublicApi/Elements/TextKeyElement/TextKeyElement';
 import { usePopup } from '../../../../hook/usePopup';
 import Popup from '../../../../component/PopupMenu/PopupMenu';
-import useAuth from 'amity-ui-kit/src/hooks/useAuth';
+import useAuth from '../../../../../hooks/useAuth';
 
 type AmitySocialHomeTopNavigationComponentType = {
   activeTab: string;
@@ -159,10 +159,9 @@ const AmitySocialHomeTopNavigationComponent: FC<
     onToggleCreateComponent,
   ]);
   */
+  const { avatarImgUrl } = useAuth();
 
   if (componentConfig?.isExcluded) return null;
-
-  const {avatarImgUrl} = useAuth();
 
   return (
     <>

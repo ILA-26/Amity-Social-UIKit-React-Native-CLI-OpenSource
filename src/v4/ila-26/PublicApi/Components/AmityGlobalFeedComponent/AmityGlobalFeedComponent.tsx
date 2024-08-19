@@ -115,7 +115,7 @@ const AmityGlobalFeedComponent: FC<AmityGlobalFeedComponentType> = ({
           />
         )
       }
-      ListFooterComponent={<View style={{ height: 56 , width : "100%" }} />}
+      ListFooterComponent={<View style={{ height: 56, width: '100%' }} />}
     />
   );
 };

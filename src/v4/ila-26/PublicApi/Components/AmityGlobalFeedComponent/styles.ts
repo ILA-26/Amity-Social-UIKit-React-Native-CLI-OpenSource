@@ -6,7 +6,7 @@ export const useStyle = (themeStyle: MyMD3Theme) => {
     feedWrap: {
       backgroundColor: themeStyle.colors.baseShade4,
       height: '100%',
-      flex : 1,
+      flex: 1,
       paddingBottom: 50,
     },
   });
