@@ -61,7 +61,7 @@ export default function AmityUiKitProvider({
   configs,
   behaviour,
   fcmToken,
-  avatarImgUrl
+  avatarImgUrl,
 }: IAmityUIkitProvider) {
   const colorScheme = useColorScheme();
   const SHADE_PERCENTAGES = [0.25, 0.4, 0.45, 0.6];

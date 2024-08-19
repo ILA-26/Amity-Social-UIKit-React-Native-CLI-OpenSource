@@ -14,7 +14,7 @@ export const useStyles = () => {
       paddingHorizontal: 12,
       borderBottomWidth: 2,
       borderColor: theme.colors.baseShade4,
-      marginTop : Platform.select({android : 16, ios : hasNotch() ?  0 : 32})
+      marginTop: Platform.select({ android: 16, ios: hasNotch() ? 0 : 32 }),
     },
     tabBtn: {
       paddingHorizontal: 12,
