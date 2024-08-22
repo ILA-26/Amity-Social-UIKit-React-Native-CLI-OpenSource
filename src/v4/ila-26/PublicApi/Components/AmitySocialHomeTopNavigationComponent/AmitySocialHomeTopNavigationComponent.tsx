@@ -68,8 +68,8 @@ const AmitySocialHomeTopNavigationComponent: FC<
       alignItems: 'center',
       paddingHorizontal: 24,
       zIndex: 1,
-      paddingTop : 16,
-      paddingBottom : 12,
+      paddingTop: 16,
+      paddingBottom: 12,
     },
     title: {
       fontWeight: 'bold',

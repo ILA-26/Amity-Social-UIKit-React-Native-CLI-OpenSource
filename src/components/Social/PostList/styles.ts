@@ -15,7 +15,7 @@ export const useStyles = () => {
     headerSection: {
       paddingVertical: 8,
       flexDirection: 'row',
-      alignItems : 'center',
+      alignItems: 'center',
       justifyContent: 'space-between',
     },
     communityNameContainer: {
@@ -71,7 +71,7 @@ export const useStyles = () => {
       borderTopColor: theme.colors.baseShade4,
       borderTopWidth: 1,
       flexDirection: 'row',
-      alignItems : 'center',
+      alignItems: 'center',
       marginTop: 8,
       marginBottom: 4,
       paddingVertical: 8,
@@ -109,7 +109,7 @@ export const useStyles = () => {
     },
     headerRow: {
       flexDirection: 'row',
-      alignItems : "center",
+      alignItems: 'center',
       flex: 1,
     },
     arrow: {

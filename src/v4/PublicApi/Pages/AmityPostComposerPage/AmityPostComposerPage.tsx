@@ -614,7 +614,7 @@ const AmityPostComposerPage: FC<AmityPostComposerPageType> = ({
       testID={accessibilityId}
       accessibilityLabel={accessibilityId}
       style={styles.container}
-      edges={["bottom" , "top"]}
+      edges={['bottom', 'top']}
     >
       <View style={styles.headerContainer}>
         <TouchableOpacity onPress={onClose} hitSlop={20}>
@@ -714,7 +714,13 @@ const AmityPostComposerPage: FC<AmityPostComposerPageType> = ({
             tEvents.push(a.nativeEvent.locationY);
             onSwipe(tEvents);
           }}
-          style={{marginBottom : isKeyboardShowing ? 0 : shouldShowDetailAttachment ? 40 : 70}}
+          style={{
+            marginBottom: isKeyboardShowing
+              ? 0
+              : shouldShowDetailAttachment
+              ? 40
+              : 70,
+          }}
         >
           {shouldShowDetailAttachment ? (
             <AmityDetailedMediaAttachmentComponent

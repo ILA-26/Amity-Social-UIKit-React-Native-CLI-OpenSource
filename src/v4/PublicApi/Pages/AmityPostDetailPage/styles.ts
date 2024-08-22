@@ -1,10 +1,9 @@
-import { Platform, StyleSheet, useWindowDimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import type { MyMD3Theme } from 'src/providers/amity-ui-kit-provider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const useStyles = (theme: MyMD3Theme) => {
   const { bottom } = useSafeAreaInsets();
-  const { width } = useWindowDimensions();
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -152,7 +151,7 @@ export const useStyles = (theme: MyMD3Theme) => {
       color: theme.colors.baseShade1,
     },
     commentListFooter: {
-      width: "100%",
+      width: '100%',
       position: 'absolute',
       bottom: 55,
     },

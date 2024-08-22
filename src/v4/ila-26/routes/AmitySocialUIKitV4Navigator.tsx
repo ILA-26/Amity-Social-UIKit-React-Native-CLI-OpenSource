@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { NavigationContainer } from '@react-navigation/native';
 import * as React from 'react';
 import {
   NativeStackNavigationProp,
@@ -125,7 +124,7 @@ export default function AmitySocialUIKitV4Navigator() {
           component={CategoryList}
           options={({}) => ({
             title: 'Category',
-            headerTitleAlign : "center",
+            headerTitleAlign: 'center',
           })}
         />
         <Stack.Screen
@@ -144,9 +143,9 @@ export default function AmitySocialUIKitV4Navigator() {
                 }}
               />
             ),
-            headerTitleStyle : {fontSize : 14 },
-            headerTitleAlign : "center",
-            title: truncateText(communityName,22),
+            headerTitleStyle: { fontSize: 14 },
+            headerTitleAlign: 'center',
+            title: truncateText(communityName, 22),
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => {
@@ -185,7 +184,7 @@ export default function AmitySocialUIKitV4Navigator() {
             headerLeft: () => <BackButton />,
             headerTitleAlign: 'center',
             title: 'Member',
-            headerTitleStyle : {fontSize : 16}
+            headerTitleStyle: { fontSize: 16 },
           }}
         />
         <Stack.Screen
@@ -198,7 +197,7 @@ export default function AmitySocialUIKitV4Navigator() {
           }: any) => ({
             title: communityName,
             headerTitleAlign: 'center',
-            headerTitleStyle : {fontSize : 16},
+            headerTitleStyle: { fontSize: 16 },
             headerLeft: () => <BackButton />,
           })}
         />
@@ -259,7 +258,7 @@ export default function AmitySocialUIKitV4Navigator() {
             headerLeft: () => <CancelButton />,
             title: 'Edit Profile',
             headerTitleAlign: 'center',
-            headerTitleStyle : {fontSize : 14},
+            headerTitleStyle: { fontSize: 14 },
           })}
         />
         <Stack.Screen
@@ -276,7 +275,7 @@ export default function AmitySocialUIKitV4Navigator() {
           component={UserPendingRequest}
           options={{
             title: 'Follow Requests',
-            headerTitleAlign : "center",
+            headerTitleAlign: 'center',
             headerLeft: () => <BackButton />,
           }}
         />
@@ -289,7 +288,7 @@ export default function AmitySocialUIKitV4Navigator() {
             },
           }: any) => ({
             title: displayName,
-            headerTitleAlign : "center",
+            headerTitleAlign: 'center',
             headerLeft: () => <BackButton />,
           })}
         />
@@ -305,7 +304,7 @@ export default function AmitySocialUIKitV4Navigator() {
             options={{
               headerShown: true,
               title: 'Reactions',
-              headerTitleAlign : "center",
+              headerTitleAlign: 'center',
               headerLeft: () => <BackButton />,
             }}
           />

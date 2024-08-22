@@ -10,7 +10,7 @@ import AmityEmptyNewsFeedComponent from '../../Components/AmityNewsFeedComponent
 import { CommunityRepository } from '@amityco/ts-sdk-react-native';
 import AmityNewsFeedComponent from '../../Components/AmityNewsFeedComponent/AmityNewsFeedComponent';
 import NewsFeedLoadingComponent from '../../../../component/NewsFeedLoadingComponent/NewsFeedLoadingComponent';
-import { LogBox, View } from 'react-native';
+import { LogBox } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AmitySocialHomeTopNavigationComponent from '../../Components/AmitySocialHomeTopNavigationComponent/AmitySocialHomeTopNavigationComponent';
 import CustomSocialTab from '../../../components/CustomSocialTab/CustomSocialTab';
@@ -97,11 +97,11 @@ const AmitySocialHomePage = () => {
       id="social_home_page"
       style={{
         flex: 1,
-        height : "100%",
-        width:"100%",
+        height: '100%',
+        width: '100%',
         backgroundColor: theme.colors.background,
       }}
-      edges={["top" , "left" , "right"]}
+      edges={['top', 'left', 'right']}
     >
       <AmitySocialHomeTopNavigationComponent activeTab={activeTab} />
       <CustomSocialTab
