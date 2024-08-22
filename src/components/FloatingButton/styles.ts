@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   otherFeedContainer: {
     position: 'absolute',
-    bottom: "10%",
+    bottom: "12%",
     right: 10,
   },
   button: {

@@ -435,7 +435,7 @@ export default function PostList({
                   <TouchableOpacity onPress={handleCommunityNamePress}>
                     <Text
                       ellipsizeMode="tail"
-                      numberOfLines={3}
+                      numberOfLines={1}
                       style={styles.headerText}
                     >
                       {communityName}

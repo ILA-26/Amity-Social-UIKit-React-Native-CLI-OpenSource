@@ -453,7 +453,7 @@ const AmityPostDetailPage: FC<AmityPostDetailPageType> = ({ postId }) => {
 
   return (
     <SafeAreaView 
-    edges={["top" , "left" , "right"]}
+    edges={["top" , "left" , "right" , "bottom"]}
     testID={accessibilityId} 
     style={{
       flex: 1,

@@ -15,6 +15,7 @@ export const useStyles = () => {
     headerSection: {
       paddingVertical: 8,
       flexDirection: 'row',
+      alignItems : 'center',
       justifyContent: 'space-between',
     },
     communityNameContainer: {
@@ -26,7 +27,7 @@ export const useStyles = () => {
     },
     headerText: {
       fontWeight: '600',
-      fontSize: 15,
+      fontSize: 14,
       color: theme.colors.base,
     },
     user: {
@@ -70,6 +71,7 @@ export const useStyles = () => {
       borderTopColor: theme.colors.baseShade4,
       borderTopWidth: 1,
       flexDirection: 'row',
+      alignItems : 'center',
       marginTop: 8,
       marginBottom: 4,
       paddingVertical: 8,
@@ -101,12 +103,13 @@ export const useStyles = () => {
     },
     likedText: {
       color: theme.colors.primary,
-      fontSize: 15,
+      fontSize: 16,
       fontWeight: '600',
       marginHorizontal: 4,
     },
     headerRow: {
       flexDirection: 'row',
+      alignItems : "center",
       flex: 1,
     },
     arrow: {

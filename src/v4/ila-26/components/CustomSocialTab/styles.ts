@@ -22,7 +22,7 @@ export const useStyles = () => {
       marginHorizontal: 4,
     },
     tabName: {
-      fontSize: 17,
+      fontSize: 16,
       lineHeight: 22,
       color: theme.colors.baseShade1,
     },

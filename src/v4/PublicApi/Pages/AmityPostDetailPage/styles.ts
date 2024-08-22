@@ -58,7 +58,7 @@ export const useStyles = (theme: MyMD3Theme) => {
       paddingHorizontal: 15,
       paddingBottom: 25,
       paddingTop: 10,
-      alignItems: 'flex-end',
+      alignItems: 'center',
       borderTopWidth: 1,
       borderTopColor: theme.colors.baseShade4,
     },
@@ -152,9 +152,9 @@ export const useStyles = (theme: MyMD3Theme) => {
       color: theme.colors.baseShade1,
     },
     commentListFooter: {
-      width: width,
+      width: "100%",
       position: 'absolute',
-      bottom: bottom,
+      bottom: 55,
     },
     modalContainer: {
       flex: 1,

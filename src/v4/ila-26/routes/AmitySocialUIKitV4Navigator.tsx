@@ -23,7 +23,7 @@ import AllMyCommunity from '../../../screens/AllMyCommunity';
 import CreateCommunity from '../../../screens/CreateCommunity';
 import PendingPosts from '../../../screens/PendingPosts';
 import type { MyMD3Theme } from '../../../providers/amity-ui-kit-provider';
-import { Text, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import { Image, TouchableOpacity, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { closeIcon } from '../../../svg/svg-xml-list';
@@ -45,6 +45,10 @@ import CreateLivestream from '../../../screens/CreateLivestream/CreateLivestream
 import PostTargetSelection from '../../screen/PostTargetSelection';
 import StoryTargetSelection from '../../PublicApi/Pages/AmityStoryTargetSelectionPage/AmityStoryTargetSelectionPage';
 import EditPost from '../../screen/EditPost/EditPost';
+
+function truncateText(text: string, maxLength: number = 30): string {
+  return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+}
 
 export const HeaderContainer = ({
   children,
@@ -120,7 +124,8 @@ export default function AmitySocialUIKitV4Navigator() {
           name="CategoryList"
           component={CategoryList}
           options={({}) => ({
-            title: 'Category'
+            title: 'Category',
+            headerTitleAlign : "center",
           })}
         />
         <Stack.Screen
@@ -139,7 +144,9 @@ export default function AmitySocialUIKitV4Navigator() {
                 }}
               />
             ),
-            title: communityName,
+            headerTitleStyle : {fontSize : 14 },
+            headerTitleAlign : "center",
+            title: truncateText(communityName,22),
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => {
@@ -175,24 +182,10 @@ export default function AmitySocialUIKitV4Navigator() {
           name="CommunityMemberDetail"
           component={CommunityMemberDetail}
           options={{
-            header: () => {
-              return (
-                <HeaderContainer>
-                  <BackButton goBack />
-                  <Text
-                    style={{
-                      fontWeight: '700',
-                      alignItems: 'center',
-                      fontSize: 16,
-                    }}
-                  >
-                    Member
-                  </Text>
-                  <View style={{ height: 56, width: 20 }}></View>
-                </HeaderContainer>
-              );
-            },
+            headerLeft: () => <BackButton />,
             headerTitleAlign: 'center',
+            title: 'Member',
+            headerTitleStyle : {fontSize : 16}
           }}
         />
         <Stack.Screen
@@ -203,21 +196,10 @@ export default function AmitySocialUIKitV4Navigator() {
               params: { communityName },
             },
           }: any) => ({
-            header: () => (
-              <HeaderContainer>
-                <BackButton goBack />
-                <Text
-                  style={{
-                    fontWeight: '700',
-                    alignItems: 'center',
-                    fontSize: 16,
-                  }}
-                >
-                  {communityName}
-                </Text>
-                <View style={{ height: 56, width: 26 }}></View>
-              </HeaderContainer>
-            ),
+            title: communityName,
+            headerTitleAlign: 'center',
+            headerTitleStyle : {fontSize : 16},
+            headerLeft: () => <BackButton />,
           })}
         />
         <Stack.Screen name="CreateCommunity" component={CreateCommunity} />
@@ -230,24 +212,20 @@ export default function AmitySocialUIKitV4Navigator() {
           }: {
             navigation: NativeStackNavigationProp<any>;
           }) => ({
-            header: () => {
-              return (
-                <NavigationContainer>
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigation.goBack();
-                    }}
-                    style={styles.btnWrap}
-                  >
-                    <SvgXml
-                      xml={closeIcon(theme.colors.base)}
-                      width="15"
-                      height="15"
-                    />
-                  </TouchableOpacity>
-                </NavigationContainer>
-              );
-            },
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.goBack();
+                }}
+                style={styles.btnWrap}
+              >
+                <SvgXml
+                  xml={closeIcon(theme.colors.base)}
+                  width="15"
+                  height="15"
+                />
+              </TouchableOpacity>
+            ),
           })}
         />
         <Stack.Screen
@@ -269,12 +247,8 @@ export default function AmitySocialUIKitV4Navigator() {
           name="UserProfile"
           component={UserProfile}
           options={{
-            headerShown: true,
-            header: () => (
-              <HeaderContainer>
-                <BackButton goBack />
-              </HeaderContainer>
-            ),
+            title: '',
+            headerLeft: () => <BackButton />,
           }}
         />
         <Stack.Screen name="EditProfile" component={EditProfile} />
@@ -282,22 +256,10 @@ export default function AmitySocialUIKitV4Navigator() {
           name="EditCommunity"
           component={EditCommunity}
           options={() => ({
-            header: () => (
-              <HeaderContainer>
-                <CancelButton />
-                <Text
-                  style={{
-                    fontWeight: '700',
-                    alignItems: 'center',
-                    fontSize: 16,
-                  }}
-                >
-                  Edit Profile
-                </Text>
-                <View style={{ height: 56, width: 56 }}></View>
-              </HeaderContainer>
-            ),
+            headerLeft: () => <CancelButton />,
+            title: 'Edit Profile',
             headerTitleAlign: 'center',
+            headerTitleStyle : {fontSize : 14},
           })}
         />
         <Stack.Screen
@@ -314,6 +276,7 @@ export default function AmitySocialUIKitV4Navigator() {
           component={UserPendingRequest}
           options={{
             title: 'Follow Requests',
+            headerTitleAlign : "center",
             headerLeft: () => <BackButton />,
           }}
         />
@@ -325,21 +288,9 @@ export default function AmitySocialUIKitV4Navigator() {
               params: { displayName },
             },
           }: any) => ({
-            header: () => (
-              <HeaderContainer>
-                <BackButton />
-                <Text
-                  style={{
-                    fontWeight: '700',
-                    alignItems: 'center',
-                    fontSize: 16,
-                  }}
-                >
-                  {displayName}
-                </Text>
-                <View style={{ height: 56, width: 20 }}></View>
-              </HeaderContainer>
-            ),
+            title: displayName,
+            headerTitleAlign : "center",
+            headerLeft: () => <BackButton />,
           })}
         />
         <Stack.Group
@@ -353,22 +304,9 @@ export default function AmitySocialUIKitV4Navigator() {
             component={ReactionListScreen}
             options={{
               headerShown: true,
+              title: 'Reactions',
+              headerTitleAlign : "center",
               headerLeft: () => <BackButton />,
-              header: () => (
-                <HeaderContainer>
-                  <BackButton goBack />
-                  <Text
-                    style={{
-                      fontWeight: '700',
-                      alignItems: 'center',
-                      fontSize: 16,
-                    }}
-                  >
-                    Reactions
-                  </Text>
-                  <View style={{ height: 56, width: 20 }}></View>
-                </HeaderContainer>
-              ),
             }}
           />
           <Stack.Screen name="CreateStory" component={CreateStoryScreen} />

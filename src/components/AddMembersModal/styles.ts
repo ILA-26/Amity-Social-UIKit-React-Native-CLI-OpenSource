@@ -8,8 +8,9 @@ export const useStyle = () => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
+      height:"100%",
       backgroundColor: theme.colors.background,
-      paddingTop: Platform.OS === 'android' ? 35 : 10, // Adjust for Android status bar
+      // paddingTop: Platform.OS === 'android' ? 35 : 10, // Adjust for Android status bar
     },
     header: {
       paddingTop: Platform.OS === 'ios' ? 50 : 20, // Adjust for iOS notch

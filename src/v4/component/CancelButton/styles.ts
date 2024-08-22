@@ -15,7 +15,7 @@ export const useStyles = () => {
       alignItems: 'center',
     },
     cancelText: {
-      fontSize: 18,
+      fontSize: 14,
       color: theme.colors.base,
     },
   });

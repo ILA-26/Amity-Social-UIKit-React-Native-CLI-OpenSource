@@ -1,5 +1,6 @@
 import { NativeModules, Platform } from 'react-native';
 import AmityUiKitProvider from './providers/amity-ui-kit-provider';
+import {default as Ila26Social} from "./v4/ila-26/routes/AmitySocialUIKitV4Navigator"
 import AmityUiKitSocial from './routes/SocialNavigator';
 import {
   AmityStoryTabComponent,
@@ -46,6 +47,7 @@ export {
   AmityUiKitSocial,
   AmityStoryTabComponent,
   AmityStoryTabComponentEnum,
+  Ila26Social ,
   AmityCreateStoryPage,
   AmityDraftStoryPage,
   AmityViewStoryPage,
