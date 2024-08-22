@@ -67,13 +67,9 @@ const AmitySocialHomeTopNavigationComponent: FC<
       justifyContent: 'space-between',
       alignItems: 'center',
       paddingHorizontal: 24,
-      paddingVertical: 8,
-      marginVertical: 8,
       zIndex: 1,
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      left: 0,
+      paddingTop : 16,
+      paddingBottom : 12,
     },
     title: {
       fontWeight: 'bold',
@@ -107,6 +103,7 @@ const AmitySocialHomeTopNavigationComponent: FC<
     profilePic: {
       width: 32,
       height: 32,
+      borderRadius: 72,
       objectFit: 'contain',
     },
   });

@@ -11,9 +11,6 @@ export const useStyles = (theme: MyMD3Theme) => {
       backgroundColor: theme.colors.background,
     },
     header: {
-      top: 0,
-      width: '100%',
-      position: 'absolute',
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
@@ -35,7 +32,7 @@ export const useStyles = (theme: MyMD3Theme) => {
     },
     scrollContainer: {
       // paddingTop: top ,
-      paddingTop: Platform.select({ android: 36, ios: 32 }),
+      // paddingTop: Platform.select({ android: 36, ios: 32 }),
       paddingBottom: bottom,
       flex: 1,
     },

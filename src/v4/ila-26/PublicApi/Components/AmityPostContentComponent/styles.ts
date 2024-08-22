@@ -25,7 +25,7 @@ export const useStyles = (theme: MyMD3Theme) => {
     },
     headerText: {
       fontWeight: '600',
-      fontSize: 12,
+      fontSize: 14,
       color: theme.colors.base,
     },
     user: {
@@ -247,7 +247,7 @@ export const useStyles = (theme: MyMD3Theme) => {
       color: theme.colors.alert,
     },
     timeRow: {
-      marginTop: 4,
+      marginTop: 0,
       flexDirection: 'row',
       alignItems: 'center',
     },

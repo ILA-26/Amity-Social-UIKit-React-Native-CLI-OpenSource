@@ -120,7 +120,7 @@ export default function AmitySocialUIKitV4Navigator() {
           name="CategoryList"
           component={CategoryList}
           options={({}) => ({
-            title: 'Category',
+            title: 'Category'
           })}
         />
         <Stack.Screen
@@ -132,42 +132,31 @@ export default function AmitySocialUIKitV4Navigator() {
               params: { communityName, communityId, isModerator },
             },
           }: any) => ({
-            header: () => {
-              return (
-                <HeaderContainer>
-                  <BackButton
-                    goBack
-                    // onPress={() => {
-                    //   navigation.navigate('Main');
-                    // }}
-                  />
-                  <Text
-                    style={{
-                      fontWeight: '700',
-                      alignItems: 'center',
-                      fontSize: 16,
-                    }}
-                  >
-                    {communityName}
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() => {
-                      // Handle button press here
-                      navigation.navigate('CommunitySetting', {
-                        communityId: communityId,
-                        communityName: communityName,
-                        isModerator: isModerator,
-                      });
-                    }}
-                  >
-                    <Image
-                      source={require('../../assets/icon/threeDot.png')}
-                      style={styles.dotIcon}
-                    />
-                  </TouchableOpacity>
-                </HeaderContainer>
-              );
-            },
+            headerLeft: () => (
+              <BackButton
+                onPress={() => {
+                  navigation.navigate('Home');
+                }}
+              />
+            ),
+            title: communityName,
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  // Handle button press here
+                  navigation.navigate('CommunitySetting', {
+                    communityId: communityId,
+                    communityName: communityName,
+                    isModerator: isModerator,
+                  });
+                }}
+              >
+                <Image
+                  source={require('../../assets/icon/threeDot.png')}
+                  style={styles.dotIcon}
+                />
+              </TouchableOpacity>
+            ),
           })}
         />
         <Stack.Screen

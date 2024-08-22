@@ -1,6 +1,5 @@
 import {
   Pressable,
-  SafeAreaView,
   View,
   Alert,
   Keyboard,
@@ -68,6 +67,7 @@ import useAuth from '../../../../hooks/useAuth';
 import EditPostModal from '../../../../components/EditPostModal';
 import { getCommunityById } from '../../../../providers/Social/communities-sdk';
 import uiSlice from '../../../../redux/slices/uiSlice';
+import { SafeAreaView } from 'react-native-safe-area-context';
 type AmityPostDetailPageType = {
   postId: Amity.Post['postId'];
 };
@@ -452,7 +452,32 @@ const AmityPostDetailPage: FC<AmityPostDetailPageType> = ({ postId }) => {
   if (isExcluded) return null;
 
   return (
-    <SafeAreaView testID={accessibilityId} style={styles.container}>
+    <SafeAreaView 
+    edges={["top" , "left" , "right"]}
+    testID={accessibilityId} 
+    style={{
+      flex: 1,
+      height : "100%",
+      width:"100%",
+    }}>
+          
+      <View style={styles.header}>
+        <Pressable onPress={onPressBack}>
+          <BackButtonIconElement
+            pageID={pageId}
+            componentID={componentId}
+            style={styles.headerIcon}
+          />
+        </Pressable>
+        <Text style={styles.headerTitle}>Post</Text>
+        <Pressable onPress={openModal}>
+          <MenuButtonIconElement
+            pageID={pageId}
+            componentID={componentId}
+            style={styles.headerIcon}
+          />
+        </Pressable>
+      </View>
       <View style={styles.scrollContainer}>
         <AmityPostCommentComponent
           setReplyUserName={setReplyUserName}
@@ -473,23 +498,7 @@ const AmityPostDetailPage: FC<AmityPostDetailPageType> = ({ postId }) => {
           }
         />
       </View>
-      <View style={styles.header}>
-        <Pressable onPress={onPressBack}>
-          <BackButtonIconElement
-            pageID={pageId}
-            componentID={componentId}
-            style={styles.headerIcon}
-          />
-        </Pressable>
-        <Text style={styles.headerTitle}>Post</Text>
-        <Pressable onPress={openModal}>
-          <MenuButtonIconElement
-            pageID={pageId}
-            componentID={componentId}
-            style={styles.headerIcon}
-          />
-        </Pressable>
-      </View>
+  
       {renderFooterComponent}
       {renderOptionModal()}
       {editPostModalVisible && (
