@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   otherFeedContainer: {
     position: 'absolute',
-    bottom: 35,
+    bottom: "10%",
     right: 10,
   },
   button: {

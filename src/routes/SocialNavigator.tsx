@@ -59,9 +59,6 @@ export default function SocialNavigator() {
             contentStyle: {
               backgroundColor: 'white',
             },
-            headerStyle: {
-              backgroundColor: theme.colors.background,
-            },
             headerTitleStyle: {
               color: theme.colors.base,
             },

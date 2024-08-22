@@ -11,6 +11,7 @@ import {
 import { useStyles } from './styles';
 import CloseButton from '../../components/BackButton';
 import useAuth from '../../hooks/useAuth';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function CategoryList({ navigation }: any) {
   const { apiRegion } = useAuth();
@@ -107,7 +108,7 @@ export default function CategoryList({ navigation }: any) {
   }, [hasNextPage]);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} edges={["top" , "left" , "right"]}>
       <FlatList
         data={categories}
         renderItem={renderCategory}
