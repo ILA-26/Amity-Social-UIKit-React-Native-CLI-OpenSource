@@ -9,7 +9,7 @@ import { useBehaviour } from '../../../../providers/BehaviourProvider';
 import TextKeyElement from '../../../../PublicApi/Elements/TextKeyElement/TextKeyElement';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../../redux/store';
-import CustomPostTypeChoiceModal from '~/v4/ila-26/components/CustomPostTypeChoiceModal/CustomPostTypeChoiceModal';
+import CustomPostTypeChoiceModal from '../../../components/CustomPostTypeChoiceModal/CustomPostTypeChoiceModal';
 
 type AmitySocialHomeTopNavigationComponentType = {
   activeTab: string;
