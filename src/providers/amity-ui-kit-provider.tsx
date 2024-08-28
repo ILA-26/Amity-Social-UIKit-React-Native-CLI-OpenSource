@@ -76,6 +76,7 @@ function App({
 
   React.useEffect(() => {
     dispatch(updateAvatarUrl(avatarImgUrl));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [avatarImgUrl]);
 
   React.useEffect(() => {
@@ -84,6 +85,7 @@ function App({
     } else {
       hasMounted.current = true;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPostPopUpOpen]);
 
   const SHADE_PERCENTAGES = [0.25, 0.4, 0.45, 0.6];

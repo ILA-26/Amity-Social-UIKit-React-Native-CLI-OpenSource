@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unstable-nested-components */
-import { NavigationContainer } from '@react-navigation/native';
 import * as React from 'react';
 import {
   NativeStackNavigationProp,
