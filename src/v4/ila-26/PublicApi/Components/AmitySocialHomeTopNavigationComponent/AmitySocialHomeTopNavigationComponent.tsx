@@ -1,17 +1,15 @@
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import React, { FC, memo, useCallback } from 'react';
-
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../routes/RouteParamList';
 import { useAmityComponent, useUiKitConfig } from '../../../../hook';
 import { ComponentID, ElementID, PageID } from '../../../../enum/enumUIKitID';
 import { useBehaviour } from '../../../../providers/BehaviourProvider';
-import AmityCreatePostMenuComponent from '../../../../PublicApi/Components/AmityCreatePostMenuComponent/AmityCreatePostMenuComponent';
 import TextKeyElement from '../../../../PublicApi/Elements/TextKeyElement/TextKeyElement';
-import { usePopup } from '../../../../hook/usePopup';
-import Popup from '../../../../component/PopupMenu/PopupMenu';
-import useAuth from '../../../../../hooks/useAuth';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../../redux/store';
+import CustomPostTypeChoiceModal from '~/v4/ila-26/components/CustomPostTypeChoiceModal/CustomPostTypeChoiceModal';
 
 type AmitySocialHomeTopNavigationComponentType = {
   activeTab: string;
@@ -25,7 +23,6 @@ const AmitySocialHomeTopNavigationComponent: FC<
   const componentConfig = useAmityComponent({ pageId, componentId });
   const theme = componentConfig.themeStyles;
   const { AmitySocialHomeTopNavigationComponentBehaviour } = useBehaviour();
-  const { isOpen, setIsOpen } = usePopup();
 
   const [myCommunitiesTab] = useUiKitConfig({
     page: PageID.social_home_page,
@@ -40,14 +37,6 @@ const AmitySocialHomeTopNavigationComponent: FC<
   //   keys: ['text'],
   // }) as string[];
 
-  // const searchIcon = useConfigImageUri({
-  //   configPath: {
-  //     page: PageID.social_home_page,
-  //     component: ComponentID.top_navigation,
-  //     element: ElementID.global_search_button,
-  //   },
-  //   configKey: 'icon',
-  // });
   // const createIcon = useConfigImageUri({
   //   configPath: {
   //     page: PageID.social_home_page,
@@ -108,12 +97,6 @@ const AmitySocialHomeTopNavigationComponent: FC<
     },
   });
 
-  useFocusEffect(
-    useCallback(() => {
-      return () => setIsOpen(false);
-    }, [setIsOpen])
-  );
-
   const onPressSearch = useCallback(() => {
     if (myCommunitiesTab === activeTab) {
       if (
@@ -134,29 +117,29 @@ const AmitySocialHomeTopNavigationComponent: FC<
     navigation,
   ]);
 
-  /*
-  const onToggleCreateComponent = useCallback(() => {
-    toggle();
-  }, [toggle]);
+  // const onCreateCommunity = useCallback(() => {
+  //   navigation.navigate('CreateCommunity');
+  // }, [navigation]);
 
-  const onCreateCommunity = useCallback(() => {
-    navigation.navigate('CreateCommunity');
-  }, [navigation]);
+  const { avatarUrl } = useSelector((state: RootState) => state.external);
+  // const { updatePopUpState } = externalSlice.actions;
 
-  const onPressCreate = useCallback(() => {
-    if (AmitySocialHomeTopNavigationComponentBehaviour.onPressCreate)
-      return AmitySocialHomeTopNavigationComponentBehaviour.onPressCreate();
-    if (activeTab === myCommunitiesTab) return onCreateCommunity();
-    return onToggleCreateComponent();
-  }, [
-    AmitySocialHomeTopNavigationComponentBehaviour,
-    activeTab,
-    myCommunitiesTab,
-    onCreateCommunity,
-    onToggleCreateComponent,
-  ]);
-  */
-  const { avatarImgUrl } = useAuth();
+  // const dispatch = useDispatch();
+
+  // const setIsOpen = (nextState: boolean) => {
+  //   dispatch(updatePopUpState(nextState));
+  // };
+  // const onPressCreate = useCallback(() => {
+  //   if (AmitySocialHomeTopNavigationComponentBehaviour.onPressCreate)
+  //     return AmitySocialHomeTopNavigationComponentBehaviour.onPressCreate();
+  //   if (activeTab === myCommunitiesTab) return onCreateCommunity();
+  //   return setIsOpen(!isPostPopUpOpen);
+  // }, [
+  //   AmitySocialHomeTopNavigationComponentBehaviour,
+  //   activeTab,
+  //   myCommunitiesTab,
+  //   onCreateCommunity,
+  // ]);
 
   if (componentConfig?.isExcluded) return null;
 
@@ -168,7 +151,7 @@ const AmitySocialHomeTopNavigationComponent: FC<
         accessibilityLabel={componentConfig.accessibilityId}
       >
         <View style={styles.profileContainer}>
-          <Image source={{ uri: avatarImgUrl }} style={styles.profilePic} />
+          <Image source={{ uri: avatarUrl }} style={styles.profilePic} />
           <TextKeyElement
             pageID={pageId}
             componentID={componentId}
@@ -198,11 +181,11 @@ const AmitySocialHomeTopNavigationComponent: FC<
             >
               <Image source={createIcon} style={styles.icon} />
             </TouchableOpacity>
-          )} */}
+          )}   */}
         </View>
-        <Popup
+        {/* <Popup
           setOpen={setIsOpen}
-          open={isOpen}
+          open={isPostPopUpOpen}
           position={{
             top: 45,
             right: 15,
@@ -212,7 +195,8 @@ const AmitySocialHomeTopNavigationComponent: FC<
             pageId={PageID.social_home_page}
             componentId={ComponentID.create_post_menu}
           />
-        </Popup>
+        </Popup>   */}
+        <CustomPostTypeChoiceModal />
       </View>
     </>
   );
