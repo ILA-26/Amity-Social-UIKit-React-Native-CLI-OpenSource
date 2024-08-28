@@ -9,5 +9,4 @@ export type AuthContextInterface = {
   apiRegion: string;
   authToken?: string;
   fcmToken?: string;
-  avatarImgUrl?: string;
 };

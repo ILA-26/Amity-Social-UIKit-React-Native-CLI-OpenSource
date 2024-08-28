@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useColorScheme } from 'react-native';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import AuthContextProvider from './auth-provider';
 import { DefaultTheme, PaperProvider, type MD3Theme } from 'react-native-paper';
 import { store } from '../redux/store';
@@ -12,6 +12,7 @@ import fallBackConfig from '../../uikit.config.json';
 import { BehaviourProvider } from '../v4/providers/BehaviourProvider';
 import { IBehaviour } from '../v4/types/behaviour.interface';
 import { lighten, parseToHsl, hslToColorString } from 'polished';
+import externalSlice from '../redux/slices/externalSlice';
 
 export type CusTomTheme = typeof DefaultTheme;
 export interface IAmityUIkitProvider {
@@ -26,6 +27,7 @@ export interface IAmityUIkitProvider {
   behaviour?: IBehaviour;
   fcmToken?: string;
   avatarImgUrl?: string;
+  isPostPopUpOpen?: boolean;
 }
 
 export interface CustomColors {
@@ -50,7 +52,7 @@ export interface CustomColors {
 export interface MyMD3Theme extends MD3Theme {
   colors: MD3Theme['colors'] & CustomColors;
 }
-export default function AmityUiKitProvider({
+function App({
   userId,
   displayName,
   apiKey,
@@ -62,8 +64,28 @@ export default function AmityUiKitProvider({
   behaviour,
   fcmToken,
   avatarImgUrl,
+  isPostPopUpOpen,
 }: IAmityUIkitProvider) {
   const colorScheme = useColorScheme();
+
+  const { updateAvatarUrl, updatePopUpState } = externalSlice.actions;
+
+  const dispatch = useDispatch();
+
+  const hasMounted = React.useRef(false);
+
+  React.useEffect(() => {
+    dispatch(updateAvatarUrl(avatarImgUrl));
+  }, [avatarImgUrl]);
+
+  React.useEffect(() => {
+    if (hasMounted.current) {
+      dispatch(updatePopUpState(true));
+    } else {
+      hasMounted.current = true;
+    }
+  }, [isPostPopUpOpen]);
+
   const SHADE_PERCENTAGES = [0.25, 0.4, 0.45, 0.6];
 
   const generateShades = (hexColor?: string): string[] => {
@@ -109,23 +131,28 @@ export default function AmityUiKitProvider({
   };
 
   return (
+    <AuthContextProvider
+      userId={userId}
+      displayName={displayName || userId}
+      apiKey={apiKey}
+      apiRegion={apiRegion}
+      apiEndpoint={apiEndpoint}
+      authToken={authToken}
+      fcmToken={fcmToken}
+    >
+      <ConfigProvider configs={configData}>
+        <BehaviourProvider behaviour={behaviour}>
+          <PaperProvider theme={globalTheme}>{children}</PaperProvider>
+        </BehaviourProvider>
+      </ConfigProvider>
+    </AuthContextProvider>
+  );
+}
+
+export default function AmityUiKitProvider(props: IAmityUIkitProvider) {
+  return (
     <Provider store={store}>
-      <AuthContextProvider
-        userId={userId}
-        displayName={displayName || userId}
-        apiKey={apiKey}
-        apiRegion={apiRegion}
-        apiEndpoint={apiEndpoint}
-        authToken={authToken}
-        fcmToken={fcmToken}
-        avatarImgUrl={avatarImgUrl}
-      >
-        <ConfigProvider configs={configData}>
-          <BehaviourProvider behaviour={behaviour}>
-            <PaperProvider theme={globalTheme}>{children}</PaperProvider>
-          </BehaviourProvider>
-        </ConfigProvider>
-      </AuthContextProvider>
+      <App {...props} />
     </Provider>
   );
 }

@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
+import { NavigationContainer } from '@react-navigation/native';
 import * as React from 'react';
 import {
   NativeStackNavigationProp,
@@ -11,7 +12,9 @@ import CommunityList from '../../../screens/CommunityList';
 import CommunityHome from '../../screen/CommunityHome';
 import { CommunitySetting } from '../../../screens/CommunitySetting/index';
 import CommunityMemberDetail from '../../../screens/CommunityMemberDetail/CommunityMemberDetail';
-import AmitySocialHomePage from '../PublicApi/pages/AmitySocialHomePage/AmitySocialHomePage';
+// import AmitySocialHomePage from '../../PublicApi/Pages/AmitySocialHomePage/AmitySocialHomePage';
+import AmitySocialHomePage from '../PublicApi//pages/AmitySocialHomePage/AmitySocialHomePage';
+// import AmitySocialHomePage from '../../../screens/GlobalFeed/index';
 import PostDetail from '../../screen/PostDetail';
 import CreatePost from '../../screen/CreatePost';
 import UserProfile from '../../screen/UserProfile/UserProfile';

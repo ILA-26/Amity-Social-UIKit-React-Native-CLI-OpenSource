@@ -18,6 +18,7 @@ import useAuth from '../../hooks/useAuth';
 import { useStyles } from './styles';
 import { useTheme } from 'react-native-paper';
 import type { MyMD3Theme } from '../../providers/amity-ui-kit-provider';
+import { SafeAreaView } from 'react-native-safe-area-context';
 interface IModal {
   visible: boolean;
   userId?: string;
@@ -182,43 +183,57 @@ const CreatePostChooseTargetModal = ({
   };
 
   return (
-    <Modal
-      visible={visible}
-      animationType="slide"
-      onTouchEnd={handleEndReached}
+    <SafeAreaView
+      style={{
+        flex: 1,
+        height: '100%',
+        width: '100%',
+        backgroundColor: theme.colors.background,
+      }}
+      edges={['top', 'left', 'right']}
     >
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <SvgXml xml={closeIcon(theme.colors.base)} width="17" height="17" />
-          </TouchableOpacity>
-          <View style={styles.headerTextContainer}>
-            <Text style={styles.headerText}>Post To</Text>
+      <Modal
+        visible={visible}
+        animationType="slide"
+        onTouchEnd={handleEndReached}
+      >
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+              <SvgXml
+                xml={closeIcon(theme.colors.base)}
+                width="17"
+                height="17"
+              />
+            </TouchableOpacity>
+            <View style={styles.headerTextContainer}>
+              <Text style={styles.headerText}>Post To</Text>
+            </View>
           </View>
+          {renderMyTimeLine()}
+          <Text style={styles.myCommunityText}>My Community</Text>
+
+          <ScrollView
+            onScroll={({ nativeEvent }) => {
+              const yOffset = nativeEvent.contentOffset.y;
+              const contentHeight = nativeEvent.contentSize.height;
+              const scrollViewHeight = nativeEvent.layoutMeasurement.height;
+              const isNearBottom =
+                contentHeight - yOffset <= scrollViewHeight * 1.7; // Adjust the multiplier as needed
+
+              if (isNearBottom) {
+                handleEndReached();
+              }
+            }}
+            scrollEventThrottle={16} // Adjust as needed
+          >
+            {communities.map((item) => renderCommunity({ item }))}
+
+            {/* You can add any additional components or content here */}
+          </ScrollView>
         </View>
-        {renderMyTimeLine()}
-        <Text style={styles.myCommunityText}>My Community</Text>
-
-        <ScrollView
-          onScroll={({ nativeEvent }) => {
-            const yOffset = nativeEvent.contentOffset.y;
-            const contentHeight = nativeEvent.contentSize.height;
-            const scrollViewHeight = nativeEvent.layoutMeasurement.height;
-            const isNearBottom =
-              contentHeight - yOffset <= scrollViewHeight * 1.7; // Adjust the multiplier as needed
-
-            if (isNearBottom) {
-              handleEndReached();
-            }
-          }}
-          scrollEventThrottle={16} // Adjust as needed
-        >
-          {communities.map((item) => renderCommunity({ item }))}
-
-          {/* You can add any additional components or content here */}
-        </ScrollView>
-      </View>
-    </Modal>
+      </Modal>
+    </SafeAreaView>
   );
 };
 

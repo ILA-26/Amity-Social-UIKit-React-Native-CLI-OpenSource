@@ -8,7 +8,6 @@ export const useStyles = () => {
     container: {
       flex: 1,
       backgroundColor: theme.colors.background,
-      paddingTop: Platform.OS === 'android' ? 35 : 10, // Adjust for Android status bar
     },
     header: {
       paddingTop: Platform.OS === 'ios' ? 50 : 20, // Adjust for iOS notch
