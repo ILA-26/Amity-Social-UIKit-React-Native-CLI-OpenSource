@@ -86,14 +86,17 @@ function Feed({ targetId, targetType }: IFeed, ref: React.Ref<FeedRefType>) {
         },
         async ({ data, error, loading, hasNextPage, onNextPage: nextPage }) => {
           if (!error && !loading) {
-            const filterData: any[] = data.map((item) => {
-              if (item.dataType === 'text') return item;
-            });
-            console.log(data.length);
+            // const filterData: any[] = data.map((item) => {
+            //   if (item.dataType === 'text') return item;
+            // });
             setOnNextPage(hasNextPage ? () => nextPage : null);
-            const formattedPostList = await amityPostsFormatter(filterData);
-            setPostData(formattedPostList);
-            subscribePostTopic(targetType, targetId);
+            try {
+              const formattedPostList = await amityPostsFormatter(data);
+              setPostData(formattedPostList);
+              subscribePostTopic(targetType, targetId);
+            } catch (error) {
+              console.log(error);
+            }
           }
         }
       );
