@@ -72,11 +72,15 @@ export const HeaderContainer = ({
   );
 };
 
-export default function AmitySocialUIKitV4Navigator({ AppsTab }: { AppsTab : React.ReactNode}) {
+export default function AmitySocialUIKitV4Navigator({
+  AppsTab,
+}: {
+  AppsTab: () => React.ReactNode;
+}) {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const theme = useTheme() as MyMD3Theme;
   const styles = useStyles();
-  
+
   return (
     <>
       <Stack.Navigator

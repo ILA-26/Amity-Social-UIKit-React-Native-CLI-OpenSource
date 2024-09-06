@@ -16,10 +16,13 @@ import AmitySocialHomeTopNavigationComponent from '../../Components/AmitySocialH
 import CustomSocialTab from '../../../components/CustomSocialTab/CustomSocialTab';
 import { NavigationContainer } from '@react-navigation/native';
 
-
 LogBox.ignoreAllLogs(true);
 
-const AmitySocialHomePage = ({ AppsTab} : {AppsTab : React.ReactNode}) => {
+const AmitySocialHomePage = ({
+  AppsTab,
+}: {
+  AppsTab: () => React.ReactNode;
+}) => {
   const theme = useTheme() as MyMD3Theme;
   const { AmitySocialHomePageBehaviour } = useBehaviour();
 
@@ -90,11 +93,9 @@ const AmitySocialHomePage = ({ AppsTab} : {AppsTab : React.ReactNode}) => {
         //   componentId={ComponentID.my_communities}
         // />
 
-        <NavigationContainer independent >
-          <AppsTab/>
+        <NavigationContainer independent>
+          <AppsTab />
         </NavigationContainer>
-
-
       );
     return null;
   };
