@@ -2,8 +2,16 @@
 import * as React from 'react';
 import useAuth from '../hooks/useAuth';
 import AmitySocialUIKitV4Navigator from '../v4/ila-26/routes/AmitySocialUIKitV4Navigator';
+import AmitySocialHomePage from '../v4/ila-26/PublicApi/pages/AmitySocialHomePage/AmitySocialHomePage';
 
-export default function SocialNavigator() {
+export interface SocialNavigatorProps  {
+  AppsTab ?: React.ReactNode
+}
+
+export default function SocialNavigator({ AppsTab} :SocialNavigatorProps) {
   const { isConnected } = useAuth();
-  return <>{isConnected && <AmitySocialUIKitV4Navigator />}</>;
+
+  const Stable = React.useCallback(() => <AmitySocialHomePage AppsTab={AppsTab} /> , [AppsTab])
+
+  return <>{isConnected && <AmitySocialUIKitV4Navigator AppsTab={Stable} />}</>;
 }

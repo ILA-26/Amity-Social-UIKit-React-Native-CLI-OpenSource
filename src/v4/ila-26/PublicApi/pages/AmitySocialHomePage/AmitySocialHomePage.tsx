@@ -14,11 +14,15 @@ import { LogBox } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AmitySocialHomeTopNavigationComponent from '../../Components/AmitySocialHomeTopNavigationComponent/AmitySocialHomeTopNavigationComponent';
 import CustomSocialTab from '../../../components/CustomSocialTab/CustomSocialTab';
+import { NavigationContainer } from '@react-navigation/native';
+
 
 LogBox.ignoreAllLogs(true);
-const AmitySocialHomePage = () => {
+
+const AmitySocialHomePage = ({ AppsTab} : {AppsTab : React.ReactNode}) => {
   const theme = useTheme() as MyMD3Theme;
   const { AmitySocialHomePageBehaviour } = useBehaviour();
+
   const [newsFeedTab] = useUiKitConfig({
     page: PageID.social_home_page,
     component: ComponentID.WildCardComponent,
@@ -85,7 +89,12 @@ const AmitySocialHomePage = () => {
         //   pageId={PageID.social_home_page}
         //   componentId={ComponentID.my_communities}
         // />
-        <></>
+
+        <NavigationContainer independent >
+          <AppsTab/>
+        </NavigationContainer>
+
+
       );
     return null;
   };
@@ -113,4 +122,5 @@ const AmitySocialHomePage = () => {
     </SafeAreaView>
   );
 };
+
 export default React.memo(AmitySocialHomePage);
