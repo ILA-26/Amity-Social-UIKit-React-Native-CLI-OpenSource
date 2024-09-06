@@ -12,7 +12,6 @@ import CommunityHome from '../../screen/CommunityHome';
 import { CommunitySetting } from '../../../screens/CommunitySetting/index';
 import CommunityMemberDetail from '../../../screens/CommunityMemberDetail/CommunityMemberDetail';
 // import AmitySocialHomePage from '../../PublicApi/Pages/AmitySocialHomePage/AmitySocialHomePage';
-import AmitySocialHomePage from '../PublicApi//pages/AmitySocialHomePage/AmitySocialHomePage';
 // import AmitySocialHomePage from '../../../screens/GlobalFeed/index';
 import PostDetail from '../../screen/PostDetail';
 import CreatePost from '../../screen/CreatePost';
@@ -73,11 +72,15 @@ export const HeaderContainer = ({
   );
 };
 
-export default function AmitySocialUIKitV4Navigator() {
+export default function AmitySocialUIKitV4Navigator({
+  AppsTab,
+}: {
+  AppsTab: () => React.ReactNode;
+}) {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const theme = useTheme() as MyMD3Theme;
-
   const styles = useStyles();
+
   return (
     <>
       <Stack.Navigator
@@ -96,7 +99,8 @@ export default function AmitySocialUIKitV4Navigator() {
       >
         <Stack.Screen
           name="Home"
-          component={AmitySocialHomePage}
+          // component={ AmitySocialHomePage}
+          component={AppsTab}
           options={{ headerShown: false }}
         />
         <Stack.Screen
