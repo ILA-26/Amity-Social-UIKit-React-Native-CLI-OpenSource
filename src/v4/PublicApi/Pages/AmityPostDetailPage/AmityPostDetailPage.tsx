@@ -6,7 +6,6 @@ import {
   Text,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Platform,
   Animated,
   Modal,
 } from 'react-native';
@@ -379,8 +378,10 @@ const AmityPostDetailPage: FC<AmityPostDetailPageType> = ({ postId }) => {
   const renderFooterComponent = useMemo(() => {
     return (
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.commentListFooter}
+        behavior={'padding'}
+        enabled
+        keyboardVerticalOffset={0}
       >
         {replyUserName.length > 0 && (
           <View style={styles.replyLabelWrap}>
