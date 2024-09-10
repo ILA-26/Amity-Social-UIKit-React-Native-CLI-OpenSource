@@ -94,7 +94,7 @@ const AmitySocialHomePage = ({
         // />
 
         <NavigationContainer independent>
-          <AppsTab />
+          {AppsTab && <AppsTab />}
         </NavigationContainer>
       );
     return null;
@@ -115,7 +115,8 @@ const AmitySocialHomePage = ({
     >
       <AmitySocialHomeTopNavigationComponent activeTab={activeTab} />
       <CustomSocialTab
-        tabNames={[newsFeedTab, exploreTab, myCommunitiesTab]}
+        // tabNames={[newsFeedTab, exploreTab, myCommunitiesTab]}
+        tabNames={[newsFeedTab, exploreTab]}
         onTabChange={onTabChange}
         activeTab={activeTab}
       />
