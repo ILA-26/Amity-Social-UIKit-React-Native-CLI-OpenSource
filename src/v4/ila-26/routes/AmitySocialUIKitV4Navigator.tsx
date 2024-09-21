@@ -45,6 +45,7 @@ import CreateLivestream from '../../../screens/CreateLivestream/CreateLivestream
 import PostTargetSelection from '../../screen/PostTargetSelection';
 import StoryTargetSelection from '../../PublicApi/Pages/AmityStoryTargetSelectionPage/AmityStoryTargetSelectionPage';
 import EditPost from '../../screen/EditPost/EditPost';
+import AmitySocialHomePage from '../PublicApi/pages/AmitySocialHomePage/AmitySocialHomePage';
 
 function truncateText(text: string, maxLength: number = 30): string {
   return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
@@ -72,11 +73,7 @@ export const HeaderContainer = ({
   );
 };
 
-export default function AmitySocialUIKitV4Navigator({
-  AppsTab,
-}: {
-  AppsTab: () => React.ReactNode;
-}) {
+export default function AmitySocialUIKitV4Navigator() {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const theme = useTheme() as MyMD3Theme;
   const styles = useStyles();
@@ -99,8 +96,7 @@ export default function AmitySocialUIKitV4Navigator({
       >
         <Stack.Screen
           name="Home"
-          // component={ AmitySocialHomePage}
-          component={AppsTab}
+          component={AmitySocialHomePage}
           options={{ headerShown: false }}
         />
         <Stack.Screen
