@@ -14,15 +14,10 @@ import { LogBox } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AmitySocialHomeTopNavigationComponent from '../../Components/AmitySocialHomeTopNavigationComponent/AmitySocialHomeTopNavigationComponent';
 import CustomSocialTab from '../../../components/CustomSocialTab/CustomSocialTab';
-import { NavigationContainer } from '@react-navigation/native';
 
 LogBox.ignoreAllLogs(true);
 
-const AmitySocialHomePage = ({
-  AppsTab,
-}: {
-  AppsTab: () => React.ReactNode;
-}) => {
+const AmitySocialHomePage = () => {
   const theme = useTheme() as MyMD3Theme;
   const { AmitySocialHomePageBehaviour } = useBehaviour();
 
@@ -38,12 +33,12 @@ const AmitySocialHomePage = ({
     element: ElementID.explore_button,
     keys: ['text'],
   }) as string[];
-  const [myCommunitiesTab] = useUiKitConfig({
-    page: PageID.social_home_page,
-    component: ComponentID.WildCardComponent,
-    element: ElementID.my_communities_button,
-    keys: ['text'],
-  }) as string[];
+  // const [myCommunitiesTab] = useUiKitConfig({
+  //   page: PageID.social_home_page,
+  //   component: ComponentID.WildCardComponent,
+  //   element: ElementID.my_communities_button,
+  //   keys: ['text'],
+  // }) as string[];
 
   const [activeTab, setActiveTab] = useState<string>(newsFeedTab);
   const [myCommunities, setMyCommunities] = useState<Amity.Community[]>(null);
@@ -86,17 +81,17 @@ const AmitySocialHomePage = ({
     if (activeTab === newsFeedTab) {
       return <AmityNewsFeedComponent pageId={PageID.social_home_page} />;
     }
-    if (activeTab === myCommunitiesTab)
-      return (
-        // <AmityMyCommunitiesComponent
-        //   pageId={PageID.social_home_page}
-        //   componentId={ComponentID.my_communities}
-        // />
+    // if (activeTab === myCommunitiesTab)
+    //   return (
+    //     // <AmityMyCommunitiesComponent
+    //     //   pageId={PageID.social_home_page}
+    //     //   componentId={ComponentID.my_communities}
+    //     // />
 
-        <NavigationContainer independent>
-          <AppsTab />
-        </NavigationContainer>
-      );
+    //     <NavigationContainer independent>
+    //       <AppsTab />
+    //     </NavigationContainer>
+    //   );
     return null;
   };
 
@@ -115,7 +110,7 @@ const AmitySocialHomePage = ({
     >
       <AmitySocialHomeTopNavigationComponent activeTab={activeTab} />
       <CustomSocialTab
-        tabNames={[newsFeedTab, exploreTab, myCommunitiesTab]}
+        tabNames={[newsFeedTab, exploreTab]}
         onTabChange={onTabChange}
         activeTab={activeTab}
       />
