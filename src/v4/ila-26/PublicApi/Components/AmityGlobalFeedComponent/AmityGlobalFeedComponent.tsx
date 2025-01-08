@@ -41,7 +41,7 @@ const AmityGlobalFeedComponent: FC<AmityGlobalFeedComponentType> = ({
   const { data: posts = [], nextPage } = postData ?? {};
   const flatListRef = useRef(null);
   async function getGlobalFeedList(
-    page: Amity.Page<number> = { after: 0, limit: 8 }
+    page: Amity.Page<number> = { after: 0, limit: 10 }
   ): Promise<void> {
     const feedObject = await getGlobalFeed(page);
     if (feedObject) {
@@ -104,7 +104,7 @@ const AmityGlobalFeedComponent: FC<AmityGlobalFeedComponentType> = ({
           refreshing={refreshing}
           onRefresh={onRefresh}
           colors={['lightblue']}
-          tintColor="lightblue"
+          tintColor="#5C2DD3"
         />
       }
       keyboardShouldPersistTaps="handled"

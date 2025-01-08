@@ -14,6 +14,8 @@ import useAuth from '../../hooks/useAuth';
 import { SvgXml } from 'react-native-svg';
 import { communityIcon } from '../../svg/svg-xml-list';
 
+const ACCUEIL = 'Accueil';
+
 export default function Explore() {
   const styles = useStyles();
   const { apiRegion } = useAuth();
@@ -21,31 +23,64 @@ export default function Explore() {
   const [recommendCommunityList, setRecommendCommunityList] = useState<
     Amity.Community[]
   >([]);
-  const [trendingCommunityList, setTrendingCommunityList] = useState<
-    Amity.Community[]
-  >([]);
+  // const [trendingCommunityList, setTrendingCommunityList] = useState<
+  //   Amity.Community[]
+  // >([]);
   const [categoryList, setCategoryList] = useState<Amity.Category[]>([]);
 
+  const parseOrderFromDescription = useCallback(
+    (description: string | undefined): number => {
+      if (!description) return Infinity;
+      const match = description.match(/<!--order:(\d+)-->/);
+      return match ? parseInt(match[1], 10) : Infinity;
+    },
+    []
+  );
+
+  const sortedCommunities = recommendCommunityList.sort((a, b) => {
+    return (
+      parseOrderFromDescription(a.description) -
+      parseOrderFromDescription(b.description)
+    );
+  });
+
   const loadRecommendCommunities = () => {
-    const unsubscribe = CommunityRepository.getRecommendedCommunities(
-      { limit: 5 },
-      ({ data: recommendCommunities }) =>
-        setRecommendCommunityList(recommendCommunities)
+    if (!energieCategoryId) return;
+    const unsubscribe = CommunityRepository.getCommunities(
+      {
+        categoryId: energieCategoryId,
+        limit: 6,
+      },
+      ({ data: recommendCommunities }) => {
+        const list = recommendCommunities.sort((a, b) => {
+          return (
+            parseOrderFromDescription(a.description) -
+            parseOrderFromDescription(b.description)
+          );
+        });
+        setRecommendCommunityList(list);
+      }
     );
     unsubscribe();
   };
 
-  const loadTrendingCommunities = async () => {
-    CommunityRepository.getTrendingCommunities(
-      { limit: 5 },
-      ({ data, loading, error }) => {
-        if (error) return;
-        if (!loading) {
-          setTrendingCommunityList(data);
-        }
-      }
-    );
-  };
+  const energieCategoryId = React.useMemo(
+    () => categoryList?.find((item) => item.name === ACCUEIL)?.categoryId,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [categoryList.length]
+  );
+
+  // const loadTrendingCommunities = async () => {
+  //   CommunityRepository.getTrendingCommunities(
+  //     { limit: 8 },
+  //     ({ data, loading, error }) => {
+  //       if (error) return;
+  //       if (!loading) {
+  //         setTrendingCommunityList(data);
+  //       }
+  //     }
+  //   );
+  // };
   const loadCategories = async () => {
     CategoryRepository.getCategories(
       { sortBy: 'name', limit: 8 },
@@ -68,10 +103,14 @@ export default function Explore() {
     }, 100);
   };
   useEffect(() => {
-    loadRecommendCommunities();
-    loadTrendingCommunities();
     loadCategories();
+    // loadTrendingCommunities();
+    // loadRecommendCommunities();
   }, []);
+  useEffect(() => {
+    loadRecommendCommunities();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categoryList]);
   const handleCategoryClick = useCallback(
     (categoryId: string, categoryName: string) => {
       setTimeout(() => {
@@ -119,8 +158,8 @@ export default function Explore() {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.recommendContainer}>
-        <Text style={styles.title}>Recommended for you</Text>
+      {/* <View style={styles.recommendContainer}>
+        <Text style={styles.title}>Recommandées pour vous</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {recommendCommunityList.map((community) => (
             <TouchableOpacity
@@ -135,33 +174,29 @@ export default function Explore() {
             >
               {community.avatarFileId ? (
                 <Image
-                  style={styles.avatar}
+                style={styles.bg}
                   source={{
                     uri: `https://api.${apiRegion}.amity.co/api/v3/files/${community.avatarFileId}/download`,
                   }}
                 />
               ) : (
-                <SvgXml
-                  xml={communityIcon}
-                  style={styles.avatar}
-                  width={40}
-                  height={40}
-                />
+                <View      style={{...styles.bg, backgroundColor : "#c5c5c5"}} />
               )}
+      <View style={{paddingHorizontal : 15, paddingBottom : 6}}>
 
               <Text style={styles.name}>{community.displayName}</Text>
               <Text style={styles.recommendSubDetail}>
                 {community.membersCount} members
               </Text>
-              <Text style={styles.bio}>{community.description}</Text>
+      </View>
             </TouchableOpacity>
           ))}
         </ScrollView>
-      </View>
+      </View> */}
       <View style={styles.trendingContainer}>
-        <Text style={styles.title}>Today's trending</Text>
+        <Text style={styles.title}>Recommandées pour vous</Text>
         <View>
-          {trendingCommunityList.map((community, index) => (
+          {sortedCommunities.map((community, index) => (
             <TouchableOpacity
               key={community.communityId}
               style={styles.itemContainer}
@@ -211,7 +246,7 @@ export default function Explore() {
       </View>
       <View style={styles.categoriesContainer}>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>Categories</Text>
+          <Text style={styles.titleText}>Catégories</Text>
           <TouchableOpacity onPress={handleCategoryListClick}>
             <Image
               source={require('../../../assets/icon/arrowRight.png')}
