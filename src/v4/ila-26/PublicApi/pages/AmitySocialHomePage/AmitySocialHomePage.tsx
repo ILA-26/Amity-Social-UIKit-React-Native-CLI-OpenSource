@@ -106,7 +106,7 @@ const AmitySocialHomePage = () => {
         width: '100%',
         backgroundColor: theme.colors.background,
       }}
-      edges={['top', 'left', 'right']}
+      edges={['left', 'right']}
     >
       <AmitySocialHomeTopNavigationComponent activeTab={activeTab} />
       <CustomSocialTab
