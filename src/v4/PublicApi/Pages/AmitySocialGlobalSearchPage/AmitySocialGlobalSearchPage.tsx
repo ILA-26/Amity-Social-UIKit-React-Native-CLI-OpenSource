@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
+import {View} from 'react-native'
 import { useStyles } from './styles';
 import AmityTopSearchBarComponent from '../../Components/AmityTopSearchBarComponent/AmityTopSearchBarComponent';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAmityGlobalSearchViewModel } from '../../../hook';
 import { TabName } from '../../../enum/enumTabName';
 import CustomTab from '../../../component/CustomTab';
@@ -21,7 +21,7 @@ const AmitySocialGlobalSearchPage = () => {
   const isCommunity = searchType === TabName.Communities;
   if (isExcluded) return null;
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <AmityTopSearchBarComponent
         searchType={searchType}
         setSearchValue={setSearchValue}
@@ -44,7 +44,7 @@ const AmitySocialGlobalSearchPage = () => {
           onNextPage={onNextUserPage}
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 

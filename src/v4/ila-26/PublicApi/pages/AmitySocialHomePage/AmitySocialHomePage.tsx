@@ -12,7 +12,7 @@ import AmityNewsFeedComponent from '../../Components/AmityNewsFeedComponent/Amit
 import NewsFeedLoadingComponent from '../../../../component/NewsFeedLoadingComponent/NewsFeedLoadingComponent';
 import { LogBox } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-// import AmitySocialHomeTopNavigationComponent from '../../Components/AmitySocialHomeTopNavigationComponent/AmitySocialHomeTopNavigationComponent';
+import AmitySocialHomeTopNavigationComponent from '../../Components/AmitySocialHomeTopNavigationComponent/AmitySocialHomeTopNavigationComponent';
 import CustomSocialTab from '../../../components/CustomSocialTab/CustomSocialTab';
 
 LogBox.ignoreAllLogs(true);
@@ -108,7 +108,7 @@ const AmitySocialHomePage = () => {
       }}
       edges={['left', 'right']}
     >
-      {/* <AmitySocialHomeTopNavigationComponent activeTab={activeTab} /> */}
+      <AmitySocialHomeTopNavigationComponent activeTab={activeTab} />
       <CustomSocialTab
         tabNames={[newsFeedTab, exploreTab]}
         onTabChange={onTabChange}
