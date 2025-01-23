@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import {View} from 'react-native'
+import { View } from 'react-native';
 import { useStyles } from './styles';
 import AmityTopSearchBarComponent from '../../Components/AmityTopSearchBarComponent/AmityTopSearchBarComponent';
 import { useAmityGlobalSearchViewModel } from '../../../hook';
