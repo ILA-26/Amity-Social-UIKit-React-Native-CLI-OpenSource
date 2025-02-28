@@ -381,7 +381,7 @@ const AmityPostDetailPage: FC<AmityPostDetailPageType> = ({ postId }) => {
         style={styles.commentListFooter}
         behavior={'padding'}
         enabled
-        keyboardVerticalOffset={0}
+        keyboardVerticalOffset={100}
       >
         {replyUserName.length > 0 && (
           <View style={styles.replyLabelWrap}>
@@ -453,15 +453,7 @@ const AmityPostDetailPage: FC<AmityPostDetailPageType> = ({ postId }) => {
   if (isExcluded) return null;
 
   return (
-    <SafeAreaView
-      edges={['top', 'left', 'right', 'bottom']}
-      testID={accessibilityId}
-      style={{
-        flex: 1,
-        height: '100%',
-        width: '100%',
-      }}
-    >
+    <View style={{flex:1}}>
       <View style={styles.header}>
         <Pressable onPress={onPressBack}>
           <BackButtonIconElement
@@ -511,7 +503,7 @@ const AmityPostDetailPage: FC<AmityPostDetailPageType> = ({ postId }) => {
           onFinishEdit={handleOnFinishEdit}
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 
