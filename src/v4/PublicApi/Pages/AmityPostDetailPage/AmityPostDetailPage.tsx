@@ -66,7 +66,6 @@ import useAuth from '../../../../hooks/useAuth';
 import EditPostModal from '../../../../components/EditPostModal';
 import { getCommunityById } from '../../../../providers/Social/communities-sdk';
 import uiSlice from '../../../../redux/slices/uiSlice';
-import { SafeAreaView } from 'react-native-safe-area-context';
 type AmityPostDetailPageType = {
   postId: Amity.Post['postId'];
 };
