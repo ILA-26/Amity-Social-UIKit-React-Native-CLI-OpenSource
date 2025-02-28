@@ -79,7 +79,7 @@ const AmityPostDetailPage: FC<AmityPostDetailPageType> = ({ postId }) => {
   const disabledInteraction = false;
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { isExcluded, themeStyles, accessibilityId } = useAmityPage({ pageId });
+  const { isExcluded, themeStyles } = useAmityPage({ pageId });
   const styles = useStyles(themeStyles);
   const [postData, setPostData] = useState<Amity.Post>(null);
   const [replyUserName, setReplyUserName] = useState<string>('');
