@@ -1,19 +1,25 @@
+import { CommunityRepository } from '@amityco/ts-sdk-react-native';
 import * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
-import Explore from '../../../../../screens/Explore';
-import { useUiKitConfig } from '../../../../hook';
-import { ComponentID, ElementID, PageID } from '../../../../enum/enumUIKitID';
-import { MyMD3Theme } from '~/providers/amity-ui-kit-provider';
-import { useTheme } from 'react-native-paper';
-import { useBehaviour } from '../../../../providers/BehaviourProvider';
-import AmityEmptyNewsFeedComponent from '../../Components/AmityNewsFeedComponent/AmityNewsFeedComponent';
-import { CommunityRepository } from '@amityco/ts-sdk-react-native';
-import AmityNewsFeedComponent from '../../Components/AmityNewsFeedComponent/AmityNewsFeedComponent';
-import NewsFeedLoadingComponent from '../../../../component/NewsFeedLoadingComponent/NewsFeedLoadingComponent';
 import { LogBox } from 'react-native';
+import { useTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import AmitySocialHomeTopNavigationComponent from '../../Components/AmitySocialHomeTopNavigationComponent/AmitySocialHomeTopNavigationComponent';
+import { useDispatch } from 'react-redux';
+import { MyMD3Theme } from '~/providers/amity-ui-kit-provider';
+import FloatingButton from '../../../../../components/FloatingButton';
+import Explore from '../../../../../screens/Explore';
+import NewsFeedLoadingComponent from '../../../../component/NewsFeedLoadingComponent/NewsFeedLoadingComponent';
+import { ComponentID, ElementID, PageID } from '../../../../enum/enumUIKitID';
+import { useUiKitConfig } from '../../../../hook';
+import { useBehaviour } from '../../../../providers/BehaviourProvider';
 import CustomSocialTab from '../../../components/CustomSocialTab/CustomSocialTab';
+import {
+  default as AmityEmptyNewsFeedComponent,
+  default as AmityNewsFeedComponent,
+} from '../../Components/AmityNewsFeedComponent/AmityNewsFeedComponent';
+import AmitySocialHomeTopNavigationComponent from '../../Components/AmitySocialHomeTopNavigationComponent/AmitySocialHomeTopNavigationComponent';
+
+import externalSlice from '../../../../../redux/slices/externalSlice';
 
 LogBox.ignoreAllLogs(true);
 
@@ -94,7 +100,12 @@ const AmitySocialHomePage = () => {
     //   );
     return null;
   };
+  const { updatePopUpState } = externalSlice.actions;
 
+  const dispatch = useDispatch();
+  const handleOnPressPostBtn = () => {
+    dispatch(updatePopUpState(true));
+  };
   return (
     <SafeAreaView
       testID="social_home_page"
@@ -115,6 +126,7 @@ const AmitySocialHomePage = () => {
         activeTab={activeTab}
       />
       {renderNewsFeed()}
+      <FloatingButton onPress={handleOnPressPostBtn} isGlobalFeed={false} />
     </SafeAreaView>
   );
 };

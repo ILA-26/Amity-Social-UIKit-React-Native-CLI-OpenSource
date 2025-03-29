@@ -56,7 +56,6 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../routes/RouteParamList';
 import { PostRepository, UserRepository } from '@amityco/ts-sdk-react-native';
 import { useFile } from '../../../hook';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 const AmityPostComposerPage: FC<AmityPostComposerPageType> = ({
   mode,
@@ -610,11 +609,10 @@ const AmityPostComposerPage: FC<AmityPostComposerPageType> = ({
   );
   if (isExcluded) return null;
   return (
-    <SafeAreaView
+    <View
       testID={accessibilityId}
       accessibilityLabel={accessibilityId}
       style={styles.container}
-      edges={['bottom', 'top']}
     >
       <View style={styles.headerContainer}>
         <TouchableOpacity onPress={onClose} hitSlop={20}>
@@ -740,7 +738,7 @@ const AmityPostComposerPage: FC<AmityPostComposerPageType> = ({
         </View>
       </KeyboardAvoidingView>
       <StatusBar backgroundColor={themeStyles.colors.background} />
-    </SafeAreaView>
+    </View>
   );
 };
 
