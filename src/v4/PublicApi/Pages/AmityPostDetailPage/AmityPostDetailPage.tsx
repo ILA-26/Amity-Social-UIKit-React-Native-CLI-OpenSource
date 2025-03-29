@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Animated,
   Modal,
+  Platform,
 } from 'react-native';
 import React, {
   FC,
@@ -66,6 +67,7 @@ import useAuth from '../../../../hooks/useAuth';
 import EditPostModal from '../../../../components/EditPostModal';
 import { getCommunityById } from '../../../../providers/Social/communities-sdk';
 import uiSlice from '../../../../redux/slices/uiSlice';
+import { SafeAreaView } from 'react-native-safe-area-context';
 type AmityPostDetailPageType = {
   postId: Amity.Post['postId'];
 };
@@ -79,7 +81,7 @@ const AmityPostDetailPage: FC<AmityPostDetailPageType> = ({ postId }) => {
   const disabledInteraction = false;
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const { isExcluded, themeStyles } = useAmityPage({ pageId });
+  const { isExcluded, themeStyles, accessibilityId } = useAmityPage({ pageId });
   const styles = useStyles(themeStyles);
   const [postData, setPostData] = useState<Amity.Post>(null);
   const [replyUserName, setReplyUserName] = useState<string>('');
@@ -378,9 +380,8 @@ const AmityPostDetailPage: FC<AmityPostDetailPageType> = ({ postId }) => {
     return (
       <KeyboardAvoidingView
         style={styles.commentListFooter}
-        behavior={'padding'}
-        enabled
-        keyboardVerticalOffset={100}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.select({ ios: 100, android: 100 })}
       >
         {replyUserName.length > 0 && (
           <View style={styles.replyLabelWrap}>
@@ -452,7 +453,17 @@ const AmityPostDetailPage: FC<AmityPostDetailPageType> = ({ postId }) => {
   if (isExcluded) return null;
 
   return (
-    <View style={{flex:1}}>
+    <SafeAreaView
+      edges={['left', 'right', 'bottom']}
+      testID={accessibilityId}
+      style={{
+        flex: 1,
+        paddingTop: 0,
+        paddingBottom: 0,
+        height: '100%',
+        width: '100%',
+      }}
+    >
       <View style={styles.header}>
         <Pressable onPress={onPressBack}>
           <BackButtonIconElement
@@ -502,7 +513,7 @@ const AmityPostDetailPage: FC<AmityPostDetailPageType> = ({ postId }) => {
           onFinishEdit={handleOnFinishEdit}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
